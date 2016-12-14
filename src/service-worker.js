@@ -44,7 +44,7 @@ self.addEventListener('fetch', (event) => {
           return response;
         });
       }).catch((error) => {
-        console.error('  Read-through caching failed:', error);
+        console.error('Read-through caching failed:', error);
 
         throw error;
       });

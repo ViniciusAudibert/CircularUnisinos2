@@ -1,6 +1,6 @@
 page-home {
   .toolbar-background {
-    background-color: #4e8ef7;
+    background-color: map-get($colors, primary);
   }
   .toolbar-title {
     text-align: center;
