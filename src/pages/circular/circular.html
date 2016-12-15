@@ -4,23 +4,32 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-grid>
-    <ion-row center text-center>
-      <div>{{circularInfo}}</div>
-      <ion-col width-50>
-        <ion-card width-100>
-          <ion-card-content>
-            10:11
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col width-50>
-        <ion-card width-100>
-          <ion-card-content>
-            10:11
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
+  <ion-grid *ngFor="let item of generateArray(circularHours) ; let index = index">
+    <h1>
+      {{getKeyByIndex(circularHours,index)}}
+    </h1>
+    <ion-card width-100>
+      <ion-card-header>
+        Manhã
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row center text-center>
+          <ion-col width-50>
+            <ion-card width-100>
+              <ion-card-content>
+                11:10
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col width-50>
+            <ion-card width-100>
+              <ion-card-content>
+                10:30
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
   </ion-grid>
 </ion-content>
