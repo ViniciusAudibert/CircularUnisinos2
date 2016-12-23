@@ -1,35 +1,40 @@
 <ion-header color="primary">
   <ion-navbar>
-    <ion-title>Horários Circular</ion-title>
+    <ion-title>Circular</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-grid *ngFor="let item of generateArray(circularHours) ; let index = index">
-    <h1>
-      {{getKeyByIndex(circularHours,index)}}
-    </h1>
-    <ion-card width-100>
-      <ion-card-header>
-        Manhã
+  <form class="form-top item-input-inset" onsubmit="getCircularInfo(time,chosenWeek)">
+    <button class="button-transparent"><i class="icon ion-ios-search placeholder-icon"></i></button>
+    <input id="search-by-hour" type="text" placeholder="Digite o horário da preferência" ng-model="time">
+  </form>
+   <p> -{{chosenWeek}}*</p>
+  <div id="circular-week">
+    <div class="dropdown-selected">
+      <select  ng-model="chosenWeek">
+            <option value="0">Todos os dias</option>
+            <option value="1">Segunda a Sexta</option>
+            <option value="2">Sábado</option>
+         </select>
+    </div>
+  </div>
+  <ion-grid *ngFor="let weeks of circular">
+    <div class="calm-title">
+      {{weeks.week}}
+    </div>
+    <ion-card *ngFor="let shift of weeks.shifts" ng-show="weeks.shifts.length > 0">
+      <ion-card-header class="card-header">
+        {{shift.shift}}
       </ion-card-header>
-      <ion-card-content>
-        <ion-row center text-center>
-          <ion-col width-50>
-            <ion-card width-100>
-              <ion-card-content>
-                11:10
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-          <ion-col width-50>
-            <ion-card width-100>
-              <ion-card-content>
-                10:30
-              </ion-card-content>
-            </ion-card>
+      <ion-list>
+        <ion-row *ngFor="let times of shift.times">
+          <ion-col width-50 class="column-times" *ngFor="let time of times">
+            <div>
+              {{time}}
+            </div>
           </ion-col>
         </ion-row>
-      </ion-card-content>
+      </ion-list>
     </ion-card>
   </ion-grid>
 </ion-content>
