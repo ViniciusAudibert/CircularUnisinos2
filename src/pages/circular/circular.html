@@ -4,14 +4,13 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <form class="form-top item-input-inset" onsubmit="getCircularInfo(time,chosenWeek)">
+  <form class="form-top item-input-inset" (submit)="getCircularInfo()">
     <button class="button-transparent"><i class="icon ion-ios-search placeholder-icon"></i></button>
-    <input id="search-by-hour" type="text" placeholder="Digite o horário da preferência" ng-model="time">
+    <input id="search-by-hour" type="text" placeholder="Digite o horário da preferência" [(ngModel)]="time" [ngModelOptions]="{standalone: true}">
   </form>
-   <p> -{{chosenWeek}}*</p>
   <div id="circular-week">
     <div class="dropdown-selected">
-      <select  ng-model="chosenWeek">
+      <select (ngModelChange)="getCircularInfo({chosenWeek: $event})" [(ngModel)]="chosenWeek">
             <option value="0">Todos os dias</option>
             <option value="1">Segunda a Sexta</option>
             <option value="2">Sábado</option>

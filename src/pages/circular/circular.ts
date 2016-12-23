@@ -23,12 +23,13 @@ export class Circular implements OnInit {
 
   constructor(public navCtrl: NavController, private circularService: CircularService) {}
 
-  getCircularInfo(time, chosenWeek): void {
-    this.circular = this.circularService.getCircularInfoByHour(this.circularHours, 2, chosenWeek, time);
+  getCircularInfo(obj): void {    
+    let chosenWeek = obj ? obj.chosenWeek ? obj.chosenWeek : this.chosenWeek : this.chosenWeek;
+    this.circular = this.circularService.getCircularInfoByHour(JSON.parse(this.circularHours), 2, chosenWeek, this.time);
   }
 
   ngOnInit(): void {
-    this.circularHours = this.circularService.getCircularInfo()['__zone_symbol__value'];
-    this.getCircularInfo(null, null);
+    this.circularHours = JSON.stringify(this.circularService.getCircularInfo()['__zone_symbol__value']);
+    this.getCircularInfo(null);
   }
 }

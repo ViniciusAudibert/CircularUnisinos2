@@ -8,9 +8,9 @@ export class CircularService {
     }
 
     getCircularInfoByHour(circularHorarios, size, weekend, timeChoosen) {
-    if (weekend === 1) {
+    if (weekend == 1) {
       circularHorarios.splice(1,1);
-    } else if (weekend === 2) {
+    } else if (weekend == 2) {
       circularHorarios.splice(0,1);
     }
       
@@ -20,7 +20,7 @@ export class CircularService {
 
         if (timeChoosen) {
           var index = getApproachTimeIndex(hours[j].times, timeChoosen);
-          hours[j].splice(0, index);
+          hours[j].times.splice(0, index);
         }
 
         shiftCollumnSort(hours, j, size);
