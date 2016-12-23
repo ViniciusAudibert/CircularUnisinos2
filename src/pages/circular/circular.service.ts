@@ -9,20 +9,21 @@ export class CircularService {
 
     getCircularInfoByHour(circularHorarios, size, weekend, timeChoosen) {
     if (weekend === 1) {
-      delete circularHorarios.Sábado;
+      circularHorarios.splice(1,1);
     } else if (weekend === 2) {
-      delete circularHorarios['Segunda a Sexta'];
+      circularHorarios.splice(0,1);
     }
-    for (var key in circularHorarios) {
-      for (var shift in circularHorarios[key]) {
-        var hours = circularHorarios[key];
+      
+    for (let i = 0; i < circularHorarios.length; i++) {
+      for (let j = 0; j < circularHorarios[i].shifts.length; j++) {
+        var hours = circularHorarios[i].shifts;
 
         if (timeChoosen) {
-          var index = getApproachTimeIndex(hours[shift], timeChoosen);
-          hours[shift].splice(0, index);
+          var index = getApproachTimeIndex(hours[j].times, timeChoosen);
+          hours[j].splice(0, index);
         }
 
-        shiftCollumnSort(hours, shift, size);
+        shiftCollumnSort(hours, j, size);
       }
     }
 
@@ -49,8 +50,8 @@ export class CircularService {
 
   function shiftCollumnSort(object, shift, size) {
     var newArray = [];
-    for (var i = 0; i < object[shift].length; i += size) {
-      newArray.push(object[shift].slice(i, i + size));
+    for (var i = 0; i < object[shift].times.length; i += size) {
+      newArray.push(object[shift].times.slice(i, i + size));
     }
-    object[shift] = newArray;
+    object[shift].times = newArray;
   }
