@@ -16,7 +16,7 @@ import {
   providers: [CircularService]
 })
 export class Circular implements OnInit {
-  public chosenWeek: any;
+  public chosenWeek = 0;
   public time: any;
   public circular: any;
   public circularHours: any;
